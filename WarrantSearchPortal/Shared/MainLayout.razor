@@ -9,7 +9,7 @@
 
     <div class="main">
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank" style="margin-top: 4px;margin-left: 15px">About</a>
+            <TelerikButton ThemeColor="@ThemeConstants.Button.ThemeColor.Primary" OnClick="OnClickFAQ" Class="faq-button">FAQ</TelerikButton>
         </div>
 
         <div class="content px-4">
@@ -17,3 +17,18 @@
         </div>
     </div>
 </div>
+
+<style>
+    .faq-button {
+        margin-top: 4px;
+        margin-left: 15px;
+    }
+</style>
+@code{
+
+    public void OnClickFAQ()
+    {
+        _nav.NavigateTo("/FAQ");
+
+    }
+}

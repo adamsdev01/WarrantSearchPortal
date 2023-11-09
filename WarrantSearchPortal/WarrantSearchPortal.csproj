@@ -23,4 +23,8 @@
       <LastGenOutput>TelerikMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Services\" />
+  </ItemGroup>
 </Project>
