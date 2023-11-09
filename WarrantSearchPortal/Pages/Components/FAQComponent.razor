@@ -1,7 +1,41 @@
 ﻿@page "/FAQ"
 
 <h3 style="text-align:center;">Frequently Asked Questions</h3>
+<br />
+<h4>Common reasons for arrest warrants?</h4>
+<br />
+<div>
+    @foreach(var desc in OffenseDescriptions)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        @desc.OffenseName
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@desc.OffenseDefinition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+</div>
 
 @code {
+
+    public IEnumerable<OffenseDescription> OffenseDescriptions = new List<OffenseDescription>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        LoadOffenseDescriptions();
+    }
+
+    public IEnumerable<OffenseDescription> LoadOffenseDescriptions()
+    {
+        OffenseDescriptions = _Service.GetAllOffenseDescriptions();
+        return OffenseDescriptions;
+    }
 
 }

@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using WarrantSearchPortal.Data.Models;
+using WarrantSearchPortal.Data.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddTelerikBlazor();
+builder.Services.AddScoped<WarrantSearchPortalService>();
 
+builder.Services.AddDbContext<WarrantPortalDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
