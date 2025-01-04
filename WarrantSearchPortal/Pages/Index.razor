@@ -3,6 +3,49 @@
 
 <br />
 
+<div>
+    <div class="search-warrant-section auto">
+        <TelerikForm Model="@searchWarrantModel"
+        Width="700px"
+        Columns="2"
+        ColumnSpacing="20px"
+        OnValidSubmit="@HandleValidSubmit"
+        OnInvalidSubmit="@HandleInvalidSubmit">
+            <FormValidation>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+            </FormValidation>
+            <FormItems>
+                <FormGroup LabelText="Search Warrants">
+                    <FormItem LabelText="First Name" Field="@nameof(searchWarrantModel.FirstName)"></FormItem>
+                    <FormItem LabelText="Last Name" Field="@nameof(searchWarrantModel.LastName)"></FormItem>
+                </FormGroup>
+            </FormItems>
+            <FormButtons>
+                <TelerikButton ThemeColor="@(ThemeConstants.Button.ThemeColor.Light)">Reset</TelerikButton>
+                <TelerikButton ThemeColor="@(ThemeConstants.Button.ThemeColor.Primary)">Search</TelerikButton>
+            </FormButtons>
+        </TelerikForm>
+    </div>
+</div>
+
 @code {
-   
+    public SearchWarrant searchWarrantModel = new();
+
+    public bool ValidSubmit { get; set; } = false;
+
+    async void HandleValidSubmit()
+    {
+        ValidSubmit = true;
+
+        await Task.Delay(2000);
+
+        ValidSubmit = false;
+
+        StateHasChanged();
+    }
+
+    void HandleInvalidSubmit()
+    {
+        ValidSubmit = false;
+    }
 }
